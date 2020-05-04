@@ -39,13 +39,20 @@ public class GameView implements Observer {
         this.undo = new JButton();
         
         this.model = model;
+        
+        for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons.length; j++) {
+                buttons[i][j] = new JButton();
+            }
+        }
+        
         initializeBoard();
     }
     
     /**
      * Creates two style buttons.
      */
-    public void initializeBoard() {
+    private void initializeBoard() {
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(500,350);
         gui.setResizable(true);
@@ -62,7 +69,6 @@ public class GameView implements Observer {
                 DarkStyle style = new DarkStyle(gui, buttons, undo, message);
                 initializeGame();
                 style.loadStyle();
-                createListeners();
             }
         });
         
@@ -76,7 +82,6 @@ public class GameView implements Observer {
                 LightStyle style = new LightStyle(gui, buttons, undo, message);
                 initializeGame();
                 style.loadStyle();
-                createListeners();
             }
         });
         
@@ -89,7 +94,7 @@ public class GameView implements Observer {
     /**
      * Initializes the game's UI elements.
      */
-    public void initializeGame() {
+    private void initializeGame() {
         message.setText("X's Turn:");
         
         StyledDocument doc = message.getStyledDocument();
@@ -115,8 +120,7 @@ public class GameView implements Observer {
         
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons.length; j++) {
-                JButton button = new JButton();
-                button = new JButton();
+                JButton button = buttons[i][j];
                 //button.setContentAreaFilled(false);
                 button.setFocusable(false);
                 button.setPreferredSize(new Dimension(75,75));
@@ -126,38 +130,6 @@ public class GameView implements Observer {
                 board.add(buttons[i][j]);
             }
         }
-    }
-    
-    /**
-     * Creates the listeners for the buttons.
-     */
-    private void createListeners() {
-        for (int i = 0; i < buttons.length; i++) {
-            for (int j = 0; j < buttons.length; j++) {
-                createActionListener(i,j);
-            }
-        }
-        
-        undo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                model.undo();
-            }
-        });
-    }
-    
-    /**
-     * Creates an action listener for the game buttons given a row and column.
-     * @param row the row of the button
-     * @param col the column of the button
-     */
-    private void createActionListener(int row, int col) {
-        buttons[row][col].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                model.makeMove(row, col);
-            }
-        });
     }
     
     @Override
@@ -183,4 +155,19 @@ public class GameView implements Observer {
         message.setText(model.getTurn() + "'s Turn:");
     }
 
+    /**
+     * Returns the buttons in the view
+     * @return buttons
+     */
+    public JButton[][] getButtons() {
+        return buttons;
+    }
+    
+    /**
+     * REturns the undo button
+     * @return the undo button
+     */
+    public JButton getUndoButton() {
+        return undo;
+    }
 }
