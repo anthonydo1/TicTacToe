@@ -1,5 +1,5 @@
 
-public class TicTacToe {
+public class TicTacToeTest {
     
     public static void main(String[] args) {
         GameModel model = new GameModel();

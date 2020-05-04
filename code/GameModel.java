@@ -22,7 +22,7 @@ public class GameModel extends Observable {
         playerTurn = "X";
         board = new String[3][3];
         hasWinner = false;
-        winner = "No one";
+        winner = "Nobody";
         undoList = new Stack<>();
         undoned = false;
     }
@@ -134,6 +134,7 @@ public class GameModel extends Observable {
             }
         }
         
+        // Check for stalemate.
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
                 if (board[i][j] == null) return;

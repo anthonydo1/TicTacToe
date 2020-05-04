@@ -28,7 +28,6 @@ public class GameView implements Observer {
     private JButton undo;
     private JTextPane message;
     
-    
     /**
      * Constructs a GameView given a GameModel.
      * @param model the GameModel
@@ -42,7 +41,6 @@ public class GameView implements Observer {
         this.model = model;
         initializeBoard();
     }
-    
     
     /**
      * Creates two style buttons.
@@ -88,7 +86,6 @@ public class GameView implements Observer {
         gui.setVisible(true);
     }
     
-    
     /**
      * Initializes the game's UI elements.
      */
@@ -131,7 +128,6 @@ public class GameView implements Observer {
         }
     }
     
-    
     /**
      * Creates the listeners for the buttons.
      */
@@ -150,7 +146,6 @@ public class GameView implements Observer {
         });
     }
     
-    
     /**
      * Creates an action listener for the game buttons given a row and column.
      * @param row the row of the button
@@ -164,7 +159,6 @@ public class GameView implements Observer {
             }
         });
     }
-    
     
     @Override
     public void update(Observable o, Object arg) {
