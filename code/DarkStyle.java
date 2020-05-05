@@ -48,6 +48,7 @@ public class DarkStyle implements Style {
                 buttons[i][j].setBorder(border);
                 buttons[i][j].setBackground(new Color(75, 75, 75));
                 buttons[i][j].setForeground(new Color(255, 77, 77));
+                buttons[i][j].setOpaque(true);
             }
         }
     }
