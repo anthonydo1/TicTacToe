@@ -3,7 +3,7 @@ import java.util.Stack;
 
 /**
  * Serves as the Model of the MVC pattern.
- * @author Anthony Do
+ * @author Anthony Do, Rico Kam, Vito Gano, Tirth Patel
  *
  */
 public class GameModel extends Observable {

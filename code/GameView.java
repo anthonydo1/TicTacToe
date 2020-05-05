@@ -15,8 +15,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 /**
- * Serves as the View/Controller of the the MVC pattern.
- * @author Anthony Do
+ * Serves as the View of the the MVC pattern.
+ * @author Anthony Do, Rico Kam, Vito Gano, Tirth Patel
  *
  */
 public class GameView implements Observer {
@@ -26,6 +26,7 @@ public class GameView implements Observer {
     private JButton[][] buttons;
     private JButton undo;
     private JTextPane message;
+    private JPanel stylePanel;
     
     /**
      * Constructs a GameView given a GameModel.
@@ -36,6 +37,7 @@ public class GameView implements Observer {
         this.buttons = new JButton[3][3];
         this.message = new JTextPane();
         this.undo = new JButton();
+        this.stylePanel = new JPanel(new FlowLayout());
         
         this.model = model;
         
@@ -49,45 +51,43 @@ public class GameView implements Observer {
     }
     
     /**
-     * Creates two style buttons.
+     * Initializes the board with the styles to choose from.
      */
     private void initializeBoard() {
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(500,350);
         gui.setResizable(true);
         
-        JPanel stylePanel = new JPanel(new FlowLayout());
+        Style[] styles = {
+                new DarkStyle(gui, buttons, undo, message), 
+                new LightStyle(gui, buttons, undo, message)};
         
-        JButton style1 = new JButton();
-        style1.setText("Dark Theme");
-        style1.setFocusable(false);
-        style1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                stylePanel.setVisible(false);
-                DarkStyle style = new DarkStyle(gui, buttons, undo, message);
-                initializeGame();
-                style.loadStyle();
-            }
-        });
+        for (int i = 0; i < styles.length; i++) {
+            createStyleButton(styles[i]);
+        }
         
-        JButton style2 = new JButton();
-        style2.setText("Light Theme");
-        style2.setFocusable(false);
-        style2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                stylePanel.setVisible(false);
-                LightStyle style = new LightStyle(gui, buttons, undo, message);
-                initializeGame();
-                style.loadStyle();
-            }
-        });
-        
-        stylePanel.add(style1);
-        stylePanel.add(style2);
-        gui.add(stylePanel, BorderLayout.CENTER);
         gui.setVisible(true);
+    }
+    
+    /**
+     * Creates a JButton for the Style given.
+     * @param style The style to create a button for.
+     */
+    private void createStyleButton(Style style) {
+        JButton button = new JButton();
+        button.setText(style.getStyleName());
+        button.setFocusable(false);
+        stylePanel.add(button);
+        gui.add(stylePanel, BorderLayout.CENTER);
+        
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stylePanel.setVisible(false);
+                initializeGame();
+                style.loadStyle();
+            }
+        });
     }
     
     /**

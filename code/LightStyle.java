@@ -8,8 +8,14 @@ import javax.swing.JTextPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+/**
+ * Light Theme
+ * @author Anthony Do, Rico Kam, Vito Gano, Tirth Patel
+ *
+ */
 public class LightStyle implements Style {
     
+    private String styleName;
     private JFrame gui;
     private JButton[][] buttons;
     private JButton undo;
@@ -23,6 +29,7 @@ public class LightStyle implements Style {
      * @param message
      */
     public LightStyle(JFrame gui, JButton[][] buttons, JButton undo, JTextPane message) {
+        this.styleName = "Light Theme";
         this.gui = gui;
         this.buttons = buttons;
         this.undo = undo;
@@ -55,5 +62,13 @@ public class LightStyle implements Style {
                 buttons[i][j].setForeground(new Color(255, 77, 77));
             }
         }
+    }
+    
+    /**
+     * Returns the style name.
+     * @return styleName
+     */
+    public String getStyleName() {
+        return styleName;
     }
 }

@@ -4,8 +4,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
- * 
- * @author Anthony Do
+ * Serves as the Controller of the MVC pattern. Controls all interactions with the Model.
+ * @author Anthony Do, Rico Kam, Vito Gano, Tirth Patel
  *
  */
 public class GameController {
