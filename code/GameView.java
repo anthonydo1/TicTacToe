@@ -10,7 +10,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;

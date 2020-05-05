@@ -3,11 +3,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+/**
+ * 
+ * @author Anthony Do
+ *
+ */
 public class GameController {
     
     private GameModel model;
     private GameView view;
     
+    /**
+     * Constructs a GameController given the GameModel and GameView
+     * @param model The GameModel object
+     * @param view The GameView object
+     */
     public GameController(GameModel model, GameView view) {
         this.model = model;
         this.view = view;
