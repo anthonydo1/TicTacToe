@@ -41,14 +41,16 @@ public class LightStyle implements Style {
      */
     public void loadStyle() {
         Border border = new LineBorder(new Color(61, 61, 61));
-        
         Border emptyBorder = BorderFactory.createEmptyBorder();
+        Font font1 = new Font("Arial", Font.BOLD, 20);
+        Font font2 = new Font("Arial", Font.BOLD, 15);
+        
         undo.setBorder(emptyBorder);
         undo.setContentAreaFilled(false);
         undo.setFocusable(false);
         undo.setForeground(new Color(255, 77, 77));
+        undo.setFont(font2);
         
-        Font font1 = new Font("Arial", Font.BOLD, 20);
         message.setOpaque(true);
         message.setFont(font1);
         message.setForeground(new Color(0,0,0));
