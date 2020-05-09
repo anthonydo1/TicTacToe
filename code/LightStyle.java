@@ -49,7 +49,7 @@ public class LightStyle implements Style {
         undo.setForeground(new Color(255, 77, 77));
         
         Font font1 = new Font("Arial", Font.BOLD, 20);
-        message.setOpaque(false);
+        message.setOpaque(true);
         message.setFont(font1);
         message.setForeground(new Color(0,0,0));
         message.setEditable(false);
