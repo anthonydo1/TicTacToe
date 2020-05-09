@@ -197,4 +197,11 @@ public class GameModel extends Observable {
     public boolean hasWinner() {
         return hasWinner;
     }
+    
+    public boolean canUndo() {
+        if (undoned == false && numOfUndosX < 3 && numOfUndosO < 3) {
+            return true;
+        }
+        return false;
+    }
 }
