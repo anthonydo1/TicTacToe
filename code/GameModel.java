@@ -12,8 +12,12 @@ public class GameModel extends Observable {
     private String[][] board;
     private boolean hasWinner;
     private String winner;
+    
     private Stack<int[]> undoList;
     private boolean undoned;
+    private int numOfUndosX;
+    private int numOfUndosO;
+    private String undoTurn;
     
     /**
      * Constructs a GameModel and initializes class variables.
@@ -25,6 +29,9 @@ public class GameModel extends Observable {
         winner = "Nobody";
         undoList = new Stack<>();
         undoned = false;
+        numOfUndosX = 0;
+        numOfUndosO = 0;
+        undoTurn = "X";
     }
     
     /**
@@ -39,11 +46,16 @@ public class GameModel extends Observable {
         if (playerTurn == "X") {
             board[row][col] = "X";
             playerTurn = "O";
+            undoTurn = "X";
+            numOfUndosO = 0;
         } else {
             board[row][col] = "O";
             playerTurn = "X";
+            undoTurn = "O";
+            numOfUndosX = 0;
         }
-        if (undoned == true) undoned = false;
+        
+        undoned = false;
         
         undoList.push(new int[] {row, col});
         calculate(row, col);
@@ -57,8 +69,16 @@ public class GameModel extends Observable {
     public void undo() {
         if (undoList.empty()) return;
         
-        if (undoned == true) return;
+        if (numOfUndosX == 3 || numOfUndosO == 3 || undoned) return;
+        
+        if (undoTurn == "X") {
+            numOfUndosX++;
+        } else {
+            numOfUndosO++;
+        }
+        
         undoned = true;
+        
         int[] cell = undoList.pop();
         int row = cell[0];
         int col = cell[1];
